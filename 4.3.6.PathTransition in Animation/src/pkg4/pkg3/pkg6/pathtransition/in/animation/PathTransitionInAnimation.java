@@ -29,39 +29,39 @@ import javafx.util.Duration;
 public class PathTransitionInAnimation extends Application {
 
     Circle circle = new Circle();
+    // Creamos las variables de nuestro círculo
+    int radius = 50;
+    int centerX = 100;
+    int centerY = 100;
+    // Creamos las variables para que nuestro circulo se muestre en el centro de la pantalla (Posicion Inicial)
+    int circleCenterX = 400 / 2;
+    int circleCenterY = 350 / 2;
+
     Rectangle rectangulo = new Rectangle();
-
+    // Creamos las variables de nuestro rectángulo
+    int rectHeight = 60;
+    int rectWidth = 30;
+    // Creamos las variables para que nuestro rectangulo se muestre en el centro de la pantalla (Posicion Inicial)
+    int initialRectX = (400 / 2) - (rectWidth / 2) - radius;
+    int initialRectY = (350 / 2) - (rectHeight / 2);
+        
     @Override
-    public void start(Stage primaryStage) {
-        /* Creamos nuestro círculo */
-
-        int radius = 50;
-        circle.setCenterX(100);
-        circle.setCenterY(100);
-        circle.setRadius(radius);
-        circle.setStroke(Color.BLACK);
-        circle.setFill(Color.WHITE);
-
-        /* Creamos nuestro rectángulo */
-        int rectHeight = 60;
-        int rectWidth = 30;
+    public void start(Stage primaryStage) 
+    {
+        // Creamo el rectángulo dándo formato a nuestro rectángulo
         rectangulo.setHeight(rectHeight);
         rectangulo.setWidth(rectWidth);
         rectangulo.setStroke(Color.TRANSPARENT);
         rectangulo.setFill(Color.YELLOW);
-
+        
+        // Creamos el Pane para añadir el círculo, al centro de nuestra pantalla
         Pane pane = new Pane();
-        int circleCenterX = 400 / 2;
-        int circleCenterY = 350 / 2;
         circle.setCenterX(circleCenterX);
         circle.setCenterY(circleCenterY);
-        int initialRectX = (400 / 2) - (rectWidth / 2) - radius;
-        int initialRectY = (350 / 2) - (rectHeight / 2);
-        //rectangulo.setX(initialRectX);
-        //rectangulo.setY(initialRectY);
+        
+   
 
-        /* Creamos la animación que hará que nuestro circulo se mueva */
-        PathTransition pathTransition = new PathTransition();
+        // Utilizamos ArcTo para crear el arco por el que irá nuestro rectángulo
         ArcTo arcTo = new ArcTo();
         arcTo.setX(circleCenterX - radius);
         arcTo.setY(circleCenterY + 0.01);
@@ -69,29 +69,45 @@ public class PathTransitionInAnimation extends Application {
         arcTo.setRadiusY(radius);
         arcTo.setSweepFlag(true);
         arcTo.setLargeArcFlag(true);
+        
+        // Añadimos un Path que contendrá las medidas de nuestro círculo
         Path path = new Path();
         path.getElements().addAll(new MoveTo(circleCenterX - radius, circleCenterY), arcTo, new ClosePath());
+        
+        // Añadimos las propiedades de nuestro círculo(color, tipo de línea...)
         path.setStroke(Color.BLUE);
         path.getStrokeDashArray().setAll(1d, 0d);
+         
+        // Añadimos nuestra PathTransition la cual le dará el movimiento
+        PathTransition pathTransition = new PathTransition();
         pathTransition.setInterpolator(Interpolator.LINEAR);
         pathTransition.setPath(path);
+        
+        // Le añadimos la duración, que tardará nuestro rectangulo en dar la vuelta
         pathTransition.setDuration(Duration.millis(4000));
+        // Le añadimos Timeline.Indefinite para que no para de dar vueltas nuestro rectangulo
         pathTransition.setCycleCount(Timeline.INDEFINITE);
+        // Le añadimos la orientación a nuestro rectángulo
         pathTransition.setNode(rectangulo);
         pathTransition.setOrientation(OrientationType.ORTHOGONAL_TO_TANGENT);
 
+        // Añdimos un MoussePressed para que cuando pulsemos con nuestro ratón pare el movimiento
         pane.setOnMousePressed(value
                 -> {
             pathTransition.pause();
         });
+        
+        // Añadimos un MouseReleased para que cuando dejemos de pulsar siga girando
         pane.setOnMouseReleased(value
                 -> {
             pathTransition.play();
         });
-        // Creamos el BorderPane y le añadimos el HBox para poder mostrarlo en pantalla
+        
+        
         Scene scene = new Scene(pane, 400, 350);
         pane.getChildren().addAll(path, rectangulo);
-        
+
+         primaryStage.setTitle("Path Transition In Animation");
         primaryStage.setScene(scene);
         primaryStage.show();
         pathTransition.play();
