@@ -20,6 +20,8 @@ public class ExpresionesLambdaMouseEvent extends Application {
     // Variables
     int anchoP = 300;
     int altoP = 250;
+    int setX = 50;
+    int setY = 50;
 
     @Override
     public void start(Stage primaryStage) {
@@ -34,8 +36,8 @@ public class ExpresionesLambdaMouseEvent extends Application {
         root.getChildren().add(text);
 
         text.setTextAlignment(TextAlignment.CENTER);
-        text.setX(50);
-        text.setY(50);
+        text.setX(setX);
+        text.setY(setY);
 
         // Aplicamos la expresion Lambda
         text.setOnMouseDragged(event
