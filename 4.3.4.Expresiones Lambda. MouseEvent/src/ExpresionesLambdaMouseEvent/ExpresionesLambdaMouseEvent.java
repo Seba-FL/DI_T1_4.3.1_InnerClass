@@ -45,7 +45,7 @@ public class ExpresionesLambdaMouseEvent extends Application {
             double x = event.getX();
             double y = event.getY();
             text.setX(Double.max(0, Double.min(x, anchoP - 95)));
-            text.setY(Double.max(0, Double.min(y, altoP)));
+            text.setY(Double.max(9, Double.min(y, altoP)));
         });
 
         // Mostramos la pantalla
