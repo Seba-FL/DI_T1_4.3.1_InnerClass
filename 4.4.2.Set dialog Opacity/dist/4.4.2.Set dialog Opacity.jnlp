@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="4.4.2.Set dialog Opacity.jnlp">
+  <information>
+    <title>4.4.2.Set dialog Opacity</title>
+    <vendor>UsuarioDAM</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="4.4.2.Set dialog Opacity" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="SetDialogOpacity.SetDialogOpacity"  name="4.4.2.Set dialog Opacity" />
+  <update check="always"/>
+</jnlp>
