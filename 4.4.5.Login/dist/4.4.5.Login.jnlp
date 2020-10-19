@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="4.4.5.Login.jnlp">
+  <information>
+    <title>4.4.5.Login</title>
+    <vendor>UsuarioDAM</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="4.4.5.Login.jar" size="3923" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="4.4.5.Login" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="pkg4.pkg4.pkg5.login.Login"  name="4.4.5.Login" />
+  <update check="always"/>
+</jnlp>
